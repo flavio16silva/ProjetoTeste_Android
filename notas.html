@@ -1,0 +1,168 @@
+<!--
+  SELETOR GLOBAL:
+
+Basicamente, quando carregamos um site, existem algumas configurações que são "globais" e automáticas, feitas pelo "use agent" (nosso navegador). Essas configurações globais normalmente são de valores de margin nos elementos... Acontece que essas configurações globais automáticas muitas vezes acabam atrapalhando e tornando moroso o nosso processo de desenvolvimento para chegar a um resultado pretendido. 
+
+Pensando nisso, para não sofrermos com "erros" de margins e paddings excessivos na página, podemos fazer CONFIGURAÇÕES GLOBAIS , onde nenhum elemento/bloco inicialmente irá ter margins ou paddings... 
+
+Para isso precisamos selecionar todos os elementos HTML , para botar isso em prática existe um seletor especial das CSS, que é o asterisco ( * {...} ) SELETOR GLOBAL . Ele tem uma função muito especial, pois basicamente ele aplica uma configuração padrão para TODOS os elementos do código HTML ao qual o estilo está sendo aplicado. Exemplo:
+
+* {
+    margin: 0px;
+    padding: 0px; 
+}
+
+O Seletor Global acima ( * {...} ) seleciona todos os elementos HTML e toda declaração que estiver dentro de suas chaves aplica isso para todos esses elementos ... Portanto, inicialmente zeramos os valores de margin e padding de todos os elementos... Claro, após fazer isso, todos os elementos da página irão "grudar" um no outro e teremos que configurar parte por parte, mas de qualquer forma isso ainda será mais proveitoso e facilitará o nosso processo de desenvolvimento, pois vai permitir personalizar as medidas que vão aparecer na tela para cada elemento individualmente.
+-->
+
+<!--VARIÁVEIS EM CSS:
+
+É possível utilizar variáveis dentro do CSS. Isso não torna a linguagem CSS uma linguagem de programação... Ela ainda continua sendo uma linguagem de marcação, assim como o HTML. Toda linguagem de programação tem variáveis, mas nem toda linguagem que tem variável é uma linguagem de programação.
+
+As Variáveis GUARDAM VALORES para serem usados mais na frente no nosso projeto/programa. 
+
+Por que deveríamos usar variáveis em CSS? Porque isso facilita, e muito, o nosso processo de desenvolvimento e posteriormente a manutenção do projeto , caso desejemos alterar algo no futuro... Fora que tudo fica ainda mais organizado.
+
+Usando a Paleta de Cores de um projeto qualquer como exemplo, geralmente alguns desenvolvedores simplesmente fixam a Paleta de Cores (códigos das cores) de um site em um comentário no documento CSS, e copiam e colam esses códigos sempre que precisam alterar uma cor... Na realidade esse não é o modo mais adequado de se fazer isso e existe uma maneira muito melhor e prática de se obter um melhor resultado, com variáveis CSS.
+
+Para declarar variáveis em CSS, devemos criar uma Pseudo-classe especial dentro do documento CSS atual, que seria uma espécie de referência dentro desse documento.
+
+As variáveis CSS são definidas dentro da Pseudo-classe " root " ( :root {...} ). Essa pseudo-classe define as configurações para a " RAIZ DA ÁRVORE ", que vai servir para o documento inteiro . 
+
+Tudo que colocarmos e definirmos dentro dessa pseudo-classe será válido para todo o documento, já que essa pseudoclasse (root) tem uma especificidade muito alta, ou seja, aplicado ao HTML, :root representa o elemento <html> e é idêntico ao seletor html, abrangendo todo o projeto... Dessa forma, basicamente podemos criar Variáveis "Globais" dentro de root.
+
+Observação: Por exemplo, em linguagens de programação, normalmente temos uma "área principal", que é onde podemos declarar as nossas variáveis globais... No CSS, essa "área principal" é na Pseudo-classe root.
+
+Todas as Variáveis em CSS tem que começar com " dois traços " ( -- ), após isso é preciso dar um nome (de sua preferência) para essa variável, posteriormente inserindo o valor da variável (código da cor nesse caso). Exemplo:
+
+:root {
+    --cor0: #ebe5c5;
+    --cor1: #83e1ab;
+    --cor2: #3ddc84;
+    --cor3: #2fa866;
+    --cor4: #1a5c37;
+    --cor5: #063d1e;
+}
+
+Nota: Não cadastramos as cores branco e preto nas variáveis do exemplo, mas isso é opcional e se você quiser pode cadastrar... Já que branco e preto sempre vai estar em um site, independentemente da Paleta utilizada.
+
+IMPORTANTE: Referente ao nome que damos para as nossas variáveis, ele é de sua preferência e você pode nomear como no exemplo acima, mas você também pode nomear de acordo com a função da variável. Por exemplo, no caso das cores da nossa Paleta, podemos nomear cada cor (variável) com o seu respectivo encargo, exemplo: "cor-de-destaque", "cor-de-fundo" e etc.
+
+Recapitulando... Para declararmos variáveis CSS, devemos abrir um seletor para a pseudo-classe "root" (referência e raiz da árvore) no início do código CSS (logo após os códigos de regra) e posteriormente declarar as nossas variáveis ( -- ) dentro desse seletor. 
+
+Depois de declarar as suas variáveis "globais" de cor dentro do root, na hora de formatarmos um elemento , qualquer elemento que seja, ao invés de digitar ou copiar e colar um código de cor, simplesmente usamos o atalho "Ctrl + Espaço", avançamos até o fim da lista de sugestões e lá estará a nossa Paleta de Cores declarada no root (valores guardados por variáveis)... Posteriormente basta escolher a cor desejada e adicioná-la.
+
+Ao selecionar variáveis na lista de sugestões como valor da respectiva Propriedade, o VSC coloca a função "var(--ex-nome);" como o valor (também é possível digitar a especificação da variável ao invés de usar a lista).
+
+O legal das variáveis é que podemos pode usá-las em quaisquer elementos e depois, se um cliente pedir por exemplo, facilmente trocar o tema do site inteiro só mudando o valor que está configurado na variável (dentro de root)... É tipo um CSS dentro do CSS, trocando o valor da variável global que está no :root, você troca no site inteiro ... Tudo que foi configurado com essa cor/variável irá ser automaticamente adaptado , sem precisar modificar propriedade por propriedade, item por item...
+
+Lembrando que nos exemplos anteriores, usamos variáveis contendo valores de cores, mas ainda dentro do mesmo seletor root que abrimos, podemos também declarar variáveis de fontes de texto, tanto fontes padrão, externas ou locais... E tudo irá funcionar exatamente como as variáveis de cores. Exemplo:
+
+:root {
+    --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
+    --fonte-destaque: 'Bebas Neue', sans-serif;
+    --fonte-android: 'Android', sans-serif;
+}
+ 'Bebas Neue' e 'Android' são fontes externas e locais respectivamente, que foram configuradas como valor de variáveis.
+
+Observação: Ao iniciarmos a configuração CSS de um novo projeto, por uma questão de organização, é muito indicado que você vá abrindo os seletores de estilização CSS de acordo com a ordem das tags da estrutura HTML , assim os seletores CSS ficarão organizados ao invés de aglomerados e completamente desordenados, e na hora de fazer alguma alteração pontual você irá se nortear de forma muito mais fácil pelo código CSS.
+
+
+Responsividade
+
+Extensão Chrome recomendada: Window Resizer
+
+Largura Responsiva:
+
+	min-width: 320px;	(tela de cel mais antigos)
+	max-width: 800px;
+	margin: auto;
+
+Para imagens:
+
+	img {
+	       width: 100%
+	}
+
+   - Envelopar a <img> junto com ' source:media ' dentro da tag <picture>, para imagem dinâmica (que altera de acordo com a largura da tela). 
+
+  Ex:  <picture>
+		 <source media="(max-width:600px)" srcset="imagens/irina-blok-pq.jpg">
+		 <img src="imagens/irina-blok.jpg" alt="Irina Blok">
+	  </picture>-->
+
+
+
+
+
+
+<!-- Uso do sinal '>'
+    
+    Quando devemos usar o sinal de maior ( " > " ) para manipular elementos que estão dentro de outros elementos (filho/children)? Talvez alguns de vocês estejam na dúvida, porque tem vezes que o Guanabara usa o sinal, e outras não... E às vezes, quando inserimos o sinal nos nossos seletores, as declarações simplesmente não tem efeito...
+
+ESCLARECENDO:
+
+Nesse caso, você precisa lembrar dos conceitos de COMBINADORES DE SELETORES, que nada mais é do que criar uma relação útil entre os seletores. 
+
+Você usa o " > " quando quer indicar que deseja estilizar um FILHO DIRETO de um elemento. Segue um exemplo:
+
+<header>
+	<h1></h1>
+	<p></p>
+</header>
+
+No caso do exemplo acima, o "p" é um filho direto da div especial <header>, e portanto é um elemento de Primeiro Nível. Da mesma forma, veja que o "h1" identicamente é um filho direto de header e portanto é um elemento de Primeiro Nível também. É como se <p> e <h1> fossem IRMÃOS. 
+
+Mas quando você NÃO USA o " > ", você  quer indicar os elementos que não são necessariamente filhos, mas são DESCENDENTES. Veja outro exemplo: 
+
+<main>
+	<article>
+		<h1></h1>
+	</article>
+</main>
+
+SELETOR NÃO SIMPLIFICADO PARA O EXEMPLO ACIMA: " main > article > h1 {...} ". H1 é filho direto de article, que é filho direto de main. 
+
+Tem como simplificar? Sim. Nesse caso, perceba que h1 é descendente de main (como se fosse um NETO ), então você pode DEIXAR DE USAR o " > " sem problema nenhum, dessa forma estará indicando elementos que não são necessariamente filhos, e sim descendentes. Exemplo: 
+
+MESMO SELETOR ANTERIOR, SÓ QUE SIMPLIFICADO: " main h1 {...} "
+
+Obs.: Se tivéssemos criado o seletor simplificado do exemplo acima, mas com o sinal " > " ( ex: main > h1 {...} ), não funcionaria porque esse h1 NÃO É FILHO DIRETO do main, e sim neto. Sendo que o sinal de maior ( ">" ) serve apenas para indicar filhos diretos.
+
+É por isso que o Guanabara não usa o sinal de maior (>) às vezes, ele está simplificando o seletor (quando possível).
+
+Isso facilita muito, porque você não precisará de uma pancada de classes e deixa o seu código mais limpo.
+
+
+
+PROPRIEDADES DE ESTILO PARA LISTAS:
+
+Segue algumas Propriedades de Estilo extras apresentadas no vídeo para usarmos dentro de seletores de listas ( ex.: ul {...} ):
+
+Quando criamos uma lista dentro de outro elemento, dentro de um aside por exemplo, geralmente as "bolinhas" da lista (marcadores sequenciais no caso de listas ordenadas) irão ficar para fora do elemento pai (aside)... Para resolver isso e manter a lista inteira dentro do elemento pai, devemos utilizar a Propriedade de Estilo " list-style-position " com o valor " inside " (por padrão marcadores de listas são posicionados com o valor " outside "). Essa propriedade define a posição dos marcadores da lista e dessa forma as "bolinhas" ficarão para dentro do elemento pai.
+
+Outra questão, às vezes temos uma lista com muitos itens, muito extensa... E queremos dividi-la em duas partes para manter uma formatação mais agradável... Para fazer isso, temos a Propriedade de Estilo " columns " com o valor " 2 ". Com isso iremos dividir a nossa lista em duas colunas (se quiser dividir em mais de duas colunas é só alterar o valor numérico da propriedade).
+
+É possível trocar as "bolinhas" ou marcadores de listas por outro símbolo, um emoji por exemplo. Para fazer isso, devemos usar a Propriedade de Estilo " list-style-type "... Como valor dessa propriedade, devemos colocar entre aspas 'simples' o número do código do emoji que escolhermos (sem o "U+"), e após isso, para de fato carregar o emoji, adicionar uma contrabarra ( \ ) antes do código do emoji e ainda dentro das aspas 'simples'. Obs.: A troca de símbolos de lista não é 100% compatível com todos os navegadores.
+
+Uma coisa que pode acontecer é o nosso símbolo ficar "grudado" no item da lista, para evitar isso é indicado acrescentar um "espaço" entre o emoji e o item de lista. Para fazer isso, ainda dentro das aspas 'simples' e DEPOIS do código do emoji, acrescente outra contrabarra ( \ ) e logo após isso o código " 00A0 " ou " 0020 " (comando de espaço ). Se você quiser, pode inserir mais de um espaço, é só repetir o processo. Obs.: Sempre que você quiser dar um "espaço" ou inserir emojis pelo CSS, para qualquer outro elemento e não somente listas, faça como foi orientado nesse texto. 
+
+Exemplo geral:
+
+ul {
+    list-style-position: inside;
+    columns: 2;
+    list-style-type: '\1F5F8\00A0\00A0';
+}
+
+Nota: Ainda existem muitas outras Propriedades de Estilo para listas além dessas três apresentadas no vídeo e descritas nesse texto.
+
+MARGIN NEGATIVA:
+
+No nosso projeto, dentro da área " Saiba Mais " (aside), formatamos o nosso h3 de um jeito que parece que o subtítulo faz parte do topo da caixa. Para fazer isso, inicialmente atribuímos um destaque de cores ao subtítulo e adicionamos um pequeno padding de 10px no mesmo... 
+
+O resultado desejado seria que a caixa do h3 crescesse para "fora" e ocupasse a exata forma do topo da caixa do aside, resultando no efeito descrito.
+
+Para isso, configuramos as margins laterais e superior do nosso h3 com um valor negativo de -10px, dessa forma a caixa do h3 irá crescer para "fora" e ocupará a forma do topo da caixa aside. A margin (espaçamento externo) foi configurada com um valor negativo, na prática essa margin está indo para dentro e se expandindo de forma inversa, abrangendo o topo do aside. Uma mesma configuração com um valor positivo no margin não daria o mesmo efeito.
+
+Para fechar, posteriormente é só fazer o arredondamento da parte de cima da caixa do h3, para ficar condizente com a parte inferior da nossa caixa aside.-->
