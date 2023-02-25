@@ -210,13 +210,85 @@ aside h3 {
   border-radius: 10px 10px 0px 0px;
 }
 
-/*Lista*/
+/*Lista de versões do android*/
 aside > ul {
   list-style-type: '\2714\00A0\00A0'; /*uso do emojipedia*/
   list-style-position: inside; /*Inserindo a bolinhas dentro da pagina*/
   columns: 2; /*Interessante deixar com 2 colunas para atender dispositivos menores na quebra da pagina*/
 
 }
+
+/*Testando input-radio========================*/
+
+/*div de agrupamento do componente*/
+.wrapper {
+  padding: 30px;
+} 
+
+/*div geral -  abaixo do wrapper*/
+.grupo {
+  
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px 0px 5px 15px;
+  
+  
+}
+
+.grupo label {
+  cursor: pointer;
+ /* padding-left: 10px;*/
+  padding: 10px;
+  margin: 4px -5px 5px -6px;
+}
+
+/*div do componente input:radio*/
+.radio {
+  cursor: pointer;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 2px solid blueviolet;
+  position: relative;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  padding: 10px;
+
+}
+
+.radio:before {
+  content: '';
+  height: 10px;
+  width: 10px;
+  background: blueviolet;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 600ms ease-in-out;
+  position: absolute;
+  
+  
+}
+
+.radio:checked::before {
+  opacity: 1;
+}
+
+.span {
+  margin-right: 20px;
+}
+
+
+
+
+
+
+
+
 
 /*Rodapé*/
 footer {
